@@ -10,8 +10,10 @@
           <p class="user-details__item"><span class="user-details__label">Date de Naissance:</span> {{ user.dateNaissance | date }}</p>
           <p class="user-details__item"><span class="user-details__label">Téléphone:</span> {{ user.telephone }}</p>
           <p class="user-details__item"><span class="user-details__label">Email:</span> {{ user.email }}</p>
+          <p class="user-details__item"><span class="user-details__label">Role:</span> {{ user.role }}</p>
         </div>
         <div class="user-details__actions">
+            <button class="user-details__button user-details__button--edit"  (click)="editRoles() ">Modifier les rôles</button>
             <button class="user-details__button user-details__button--edit" (click)="editUser()">Modifier</button>
             <button class="user-details__button user-details__button--delete" (click)="deleteUser()">Supprimer</button>
           </div>

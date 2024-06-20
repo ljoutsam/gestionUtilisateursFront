@@ -1,0 +1,21 @@
+
+<app-header></app-header>
+
+@if (userForm) {
+    <div class="user-roles">
+        <h2 class="user-roles__title">Modifier le rôle de {{ userForm.get('nom')?.value }} {{ userForm.get('prenom')?.value }}</h2>
+        <form [formGroup]="userForm" (ngSubmit)="updateUserRole()" class="user-roles__form">
+            <label>
+              Sélectionner un rôle :
+              <select formControlName="role">
+                @for (role of roles; track $index) {
+                    <option  [value]="role">{{ role }}</option>
+                }
+              </select>
+            </label>
+            <button type="submit">Enregistrer</button>
+          </form>
+      </div>
+}
+
+  

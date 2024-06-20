@@ -41,7 +41,8 @@ export class UserFormComponent implements OnInit {
       prenom: ['', Validators.required],
       dateNaissance: [null],
       telephone: ['', [Validators.required,Validators.pattern(PHONE_PATTERN) ]],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      roles: this.fb.array(['admin'])
     });
   }
 

@@ -8,13 +8,15 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { UserRolesComponent } from './user-roles/user-roles.component';
 
 
 @NgModule({
   declarations: [
     UserFormComponent,
     UserDetailsComponent,
-    UserListComponent
+    UserListComponent,
+    UserRolesComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SharedModule } from '../shared/shared.module';
   exports : [
     UserFormComponent,
     UserDetailsComponent,
-    UserListComponent
+    UserListComponent,
+    UserRolesComponent
   ]
 })
 export class UsersModule { }

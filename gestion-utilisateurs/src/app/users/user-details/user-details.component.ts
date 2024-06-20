@@ -33,6 +33,12 @@ export class UserDetailsComponent implements OnInit {
     }
   }
 
+  editRoles(): void {
+    if (this.user) {
+      this.router.navigate(['/user-roles', this.user.id]);
+    }
+  }
+
   deleteUser(): void {
     if (this.user && confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
       this.userService.deleteUser(this.user.id).subscribe(() => {
