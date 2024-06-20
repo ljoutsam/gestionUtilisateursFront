@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="user-form">
-    <h2 class="user-form__title">{{ isEditMode ? 'Modifier Utilisateur' : 'Ajouter Utilisateur' }}</h2>
+    <h2 class="user-form__title">{{ isEditMode ? 'Modifier un utilisateur' : 'Ajouter un utilisateur' }}</h2>
   
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="user-form__field">

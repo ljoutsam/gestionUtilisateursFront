@@ -4,6 +4,7 @@
     prenom: string,
     dateNaissance: Date,
     telephone: string,
-    email: string
+    email: string,
+    role: string; // Champ pour stocker les rôles de l'utilisateur
   };
   
