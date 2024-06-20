@@ -1,0 +1,72 @@
+
+
+@mixin button(){
+    margin-left: auto; /* Pour aligner le bouton à droite */
+    padding: 10px 20px;
+    color: #fff; /* Couleur du texte */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-list__update-button {
+    @include button();
+    background-color: #28a745; /* Couleur de fond du bouton */
+  }
+
+  .user-list__delete-button {
+    @include button();
+    background-color: red; /* Couleur de fond du bouton */
+    
+  }
+
+  .user-list {
+    padding: 20px;
+  }
+  
+  .user-list__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .user-list__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .user-list__table th,
+  .user-list__table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .user-list__table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .user-list__user-link {
+    text-decoration: none;
+    color: #007bff; /* Couleur des liens */
+    transition: color 0.3s ease;
+  }
+  
+  .user-list__user-link:hover {
+    color: #0056b3; /* Changement de couleur au survol */
+  }
+  
+  
+  .user-list__add-button:hover {
+    background-color: #218838; /* Changement de couleur au survol */
+  }
+  
+  
+ 
+  
+  
+  
