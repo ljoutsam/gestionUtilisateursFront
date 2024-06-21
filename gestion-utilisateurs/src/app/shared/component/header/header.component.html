@@ -1,13 +1,19 @@
 <nav class="navbar">
   <div class="navbar__container">
-    <a class="navbar__brand" routerLink="/">Users Manager</a>
+    <a class="navbar__brand" routerLink="/home">Users Manager</a>
     <ul class="navbar__nav" >
       <li class="navbar__nav-item">
         <a class="navbar__nav-link" routerLink="/users" routerLinkActive="active">All Users</a>
       </li>
-      <li class="navbar__nav-item">
-        <a class="navbar__nav-link" routerLink="/add-user" routerLinkActive="active">Add User</a>
+      @if (currentUserRole==='admin') {
+        <li class="navbar__nav-item">
+          <a class="navbar__nav-link" routerLink="/add-user" routerLinkActive="active">Add User</a>
+        </li>
+      }
+      <li class="navbar__nav-item" *ngIf="isLoggedIn()">
+        <a class="navbar__nav-link" (click)="logout()">Logout</a>
       </li>
+        
     </ul>
   </div>
 </nav>
