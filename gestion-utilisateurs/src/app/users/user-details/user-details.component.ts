@@ -1,30 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrl: './user-details.component.scss'
+  styleUrls: ['./user-details.component.scss']
 })
-
-export class UserDetailsComponent implements OnInit {
+export class UserDetailsComponent implements OnInit, OnDestroy {
   user: User | undefined;
-  currentUserRole: string='';
+  currentUserRole: string = '';
+  private getUserSubscription: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,
-    private authService: AuthService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.userService.getUserById(id).subscribe(data => {
+      this.getUserSubscription = this.userService.getUserById(id).subscribe(data => {
         this.user = data;
       });
     }
@@ -48,6 +49,12 @@ export class UserDetailsComponent implements OnInit {
       this.userService.deleteUser(this.user.id).subscribe(() => {
         this.router.navigate(['/users']);
       });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.getUserSubscription) {
+      this.getUserSubscription.unsubscribe();
     }
   }
 }

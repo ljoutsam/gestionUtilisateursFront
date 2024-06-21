@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { SharedModule } from '../shared/shared.module';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string = '';
+  private authSubscription: Subscription | undefined;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     if (this.loginForm.valid) {
       const { nom, email } = this.loginForm.value;
-      this.authService.login(nom, email).subscribe(
+      this.authSubscription = this.authService.login(nom, email).subscribe(
         () => {
           this.router.navigate(['/home']); // Redirection après connexion
         },
@@ -35,6 +37,12 @@ export class LoginComponent implements OnInit {
           this.errorMessage = error; // Affichage du message d'erreur
         }
       );
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 }
