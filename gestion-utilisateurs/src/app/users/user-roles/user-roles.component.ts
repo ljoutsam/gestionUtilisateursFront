@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../models/user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -20,6 +20,7 @@ export class UserRolesComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
     private fb: FormBuilder
   ) { }
@@ -58,6 +59,7 @@ export class UserRolesComponent implements OnInit, OnDestroy {
       // Appeler le service pour mettre à jour le rôle de l'utilisateur
       this.userService.updateUserRole(this.userId, selectedRole).subscribe(() => {
         console.log('Rôle mis à jour avec succès !');
+        this.router.navigate(['/users']);
       });
     }
   }
