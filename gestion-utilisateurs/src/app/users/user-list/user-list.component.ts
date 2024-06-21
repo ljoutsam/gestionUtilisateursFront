@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -10,10 +11,13 @@ import { User } from '../models/user';
 
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  currentUserRole: string='';
 
-  constructor(private userService: UserService) { }
+
+  constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUserRole = this.authService.getCurrentUserRole();
     this.fetchUsers();
   }
 

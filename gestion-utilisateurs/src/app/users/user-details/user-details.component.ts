@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-user-details',
@@ -11,11 +12,13 @@ import { UserService } from '../services/user.service';
 
 export class UserDetailsComponent implements OnInit {
   user: User | undefined;
+  currentUserRole: string='';
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +28,7 @@ export class UserDetailsComponent implements OnInit {
         this.user = data;
       });
     }
+    this.currentUserRole = this.authService.getCurrentUserRole();
   }
 
   editUser(): void {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { error } from 'console';
+import { AuthService } from '../../auth.service';
 
 
 const PHONE_PATTERN = /^\+?[0-9]{10,15}$/;
@@ -18,14 +20,17 @@ export class UserFormComponent implements OnInit {
   userForm!: FormGroup;
   isEditMode = false;
   userId: string | null = null;
-  phone_pattern :string = '/^\+?[0-9]{10,15}$/';
+  errorMessage: string | null = '';
 
+  phone_pattern :string = '/^\+?[0-9]{10,15}$/';
+  
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    
   ) {
     
   }
@@ -33,6 +38,7 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {
       this.initForm();
       this.subscribeToRouteParams();
+      
   }
 
   private initForm() {
@@ -42,7 +48,7 @@ export class UserFormComponent implements OnInit {
       dateNaissance: [null],
       telephone: ['', [Validators.required,Validators.pattern(PHONE_PATTERN) ]],
       email: ['', [Validators.required, Validators.email]],
-      roles: this.fb.array(['admin'])
+      role: ['user', Validators.required]
     });
   }
 
@@ -99,14 +105,26 @@ export class UserFormComponent implements OnInit {
   }
 
   private updateUser(formData: any): void {
-    this.userService.updateUser(this.userId!, formData).subscribe(() => {
-      this.router.navigate(['/users']);
+    this.userService.updateUser(this.userId!, formData).subscribe({
+      next: () => {
+        this.router.navigate(['/users']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error;
+      }
     });
   }
 
   private addUser(formData: any): void {
-    this.userService.addUser(formData).subscribe(() => {
-      this.router.navigate(['/users']);
+    this.userService.addUser(formData).subscribe({
+
+      next: () => {
+        this.router.navigate(['/users']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error;
+      }
+
     });
   }
 

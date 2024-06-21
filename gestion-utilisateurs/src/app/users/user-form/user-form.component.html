@@ -6,36 +6,45 @@
       <div class="user-form__field">
         <label class="user-form__label">Nom</label>
         <input type="text" formControlName="nom" class="user-form__input">
-        <div *ngIf="getErrorMsg('nom')" class="user-form__error">{{ getErrorMsg('nom') }}</div>
+        @if (getErrorMsg('nom')) {
+            <div  class="user-form__error">{{ getErrorMsg('nom') }}</div>
+        }
       </div>
-  
       <div class="user-form__field">
         <label class="user-form__label">Prénom</label>
         <input type="text" formControlName="prenom" class="user-form__input">
-        <div *ngIf="getErrorMsg('prenom')" class="user-form__error">{{ getErrorMsg('prenom') }}</div>
+        @if (getErrorMsg('prenom')) {
+            <div  class="user-form__error">{{ getErrorMsg('prenom') }}</div>
+        }
       </div>
   
       <div class="user-form__field">
         <label class="user-form__label">Date de Naissance</label>
         <input type="date" formControlName="dateNaissance" class="user-form__input user-form__date-input">
-    
       </div>
   
       <div class="user-form__field">
         <label class="user-form__label">Téléphone</label>
         <input type="text" formControlName="telephone" class="user-form__input">
-        <div *ngIf="getErrorMsg('telephone')" class="user-form__error">{{ getErrorMsg('telephone') }}</div>
+        @if (getErrorMsg('telephone')) {
+            <div  class="user-form__error">{{ getErrorMsg('telephone') }}</div>
+        }
       </div>
-  
-      <div class="user-form__field">
-        <label class="user-form__label">Email</label>
-        <input type="email" formControlName="email" class="user-form__input">
-        <div *ngIf="getErrorMsg('email')" class="user-form__error">{{ getErrorMsg('email') }}</div>
-      </div>
+
+        <div class="user-form__field">
+            <label class="user-form__label">Email</label>
+            <input type="email" formControlName="email" class="user-form__input">
+            @if (getErrorMsg('email')) {
+                <div  class="user-form__error">{{ getErrorMsg('email') }}</div>
+            }
+            @if (errorMessage) {
+                <div  class="user-form__error">{{ errorMessage }}</div>
+            }
+        </div>
   
       <button type="submit" [disabled]="userForm.invalid" class="user-form__submit-btn">
         {{ isEditMode ? 'Modifier' : 'Ajouter' }}
       </button>
-    </form>
+    </form> 
   </div>
   

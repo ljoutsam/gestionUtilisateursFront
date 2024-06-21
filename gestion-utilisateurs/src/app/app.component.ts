@@ -4,7 +4,8 @@ import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersModule } from './users/users.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule, 
     RouterOutlet,
     HomeComponent,
+    LoginComponent,
     FormsModule,
-
     HttpClientModule,
     UsersModule
   ],
