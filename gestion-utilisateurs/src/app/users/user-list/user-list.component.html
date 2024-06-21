@@ -16,7 +16,7 @@
                 <td>
                     <a class="user-list__user-link" [routerLink]="['/user', user.id]">Détails</a>
                 </td>
-                @if (currentUserRole === 'admin') {
+                @if (currentUserRole === 'admin' && user.role!=='admin') {
                     <td> <button class="user-list__update-button" [routerLink]="['/edit-user', user.id]" >Modifier</button></td>
                     <td> <button class="user-list__delete-button" (click)="deleteUser(user.id)"  >Supprimer</button></td>
                 }    
