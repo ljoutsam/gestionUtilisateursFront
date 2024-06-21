@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, Subscription, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
 export class AuthService {
   private apiUrl = 'server/api/';
   private currentUser: any;
-  private email: string | null = null;
-  private nom: string | null = null;
 
   constructor(private http: HttpClient,
     private router: Router) {

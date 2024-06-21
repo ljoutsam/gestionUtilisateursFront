@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { User } from '../models/user';
+import { UserService } from '../services/user.service';
 import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss'
+  styleUrls: ['./user-list.component.scss']
 })
-
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
   users: User[] = [];
-  currentUserRole: string='';
+  currentUserRole: string = '';
+  private usersSubscription: Subscription | undefined;
 
-
-  constructor(private userService: UserService, private authService: AuthService) { }
+  constructor(private userService: UserService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.currentUserRole = this.authService.getCurrentUserRole();
@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
   }
 
   fetchUsers(): void {
-    this.userService.getUsers().subscribe(
+    this.usersSubscription = this.userService.getUsers().subscribe(
       (users: User[]) => {
         this.users = users;
       },
@@ -47,4 +47,9 @@ export class UserListComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    if (this.usersSubscription) {
+      this.usersSubscription.unsubscribe();
+    }
+  }
 }
