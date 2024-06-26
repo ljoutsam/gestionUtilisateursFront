@@ -1,9 +1,9 @@
 <app-header></app-header>
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">Bienvenue sur votre plateforme de Gestion d'Utilisateurs</h1>
-    <p class="lead">Cette application vous permet de gérer les utilisateurs, leurs rôles et leurs permissions.</p>
-    <hr class="my-4">
+    <h1>Bienvenue sur votre plateforme de Gestion d'Utilisateurs</h1>
+    <p >Cette application vous permet de gérer les utilisateurs, leurs rôles et leurs permissions.</p>
+    <hr>
     <p>Utilisez les boutons ci-dessous pour naviguer dans l'application.</p>
     <button class="btn  btn-lg" (click)="navigateTo('/users')">Liste des Utilisateurs</button>
     @if (currentUserRole==='admin') {

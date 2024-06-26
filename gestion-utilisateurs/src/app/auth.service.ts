@@ -22,7 +22,7 @@ export class AuthService {
       map(user => {
         if (user) {
           this.currentUser = user;
-          console.log('Login successful!', user);
+          console.log('Login successful!');
           return user;
         } else {
           return null;

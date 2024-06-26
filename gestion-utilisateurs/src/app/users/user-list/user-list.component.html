@@ -19,7 +19,11 @@
                 @if (currentUserRole === 'admin' && user.role!=='admin') {
                     <td> <button class="user-list__update-button" [routerLink]="['/edit-user', user.id]" >Modifier</button></td>
                     <td> <button class="user-list__delete-button" (click)="deleteUser(user.id)"  >Supprimer</button></td>
-                }    
+                } 
+                @else {
+                  <td></td>
+                  <td></td>
+                }   
             </tr>
         }
       </tbody>
