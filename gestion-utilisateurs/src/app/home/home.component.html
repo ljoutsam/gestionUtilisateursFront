@@ -1,13 +1,25 @@
-<app-header></app-header>
 <div class="container">
   <div class="jumbotron">
-    <h1>Bienvenue sur votre plateforme de Gestion d'Utilisateurs</h1>
-    <p >Cette application vous permet de gérer les utilisateurs, leurs rôles et leurs permissions.</p>
-    <hr>
-    <p>Utilisez les boutons ci-dessous pour naviguer dans l'application.</p>
-    <button class="btn  btn-lg" (click)="navigateTo('/users')">Liste des Utilisateurs</button>
-    @if (currentUserRole==='admin') {
-        <button class="btn  btn-lg" (click)="navigateTo('/add-user')">Ajouter un Utilisateur</button>
-    }   
+    <div class="header-france">
+      <img src="assets/images/oralya.svg" alt="ORALYA – Sécurité et Justice" class="logo-france">
+      <h1>Bienvenue sur <span class="app-title">ORALYA</span></h1>
+    </div>
+
+    <p class="subtitle">
+      Cette application vous permet de gérer les dépôts de plaintes et de rédiger vos procès-verbaux.
+    </p>
+
+    <hr />
+
+    <div class="audio-section">
+      <app-audio-recorder></app-audio-recorder>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-lg" (click)="navigateTo('/users')">Liste des Utilisateurs</button>
+      @if (currentUserRole === 'admin') {
+        <button class="btn btn-lg" (click)="navigateTo('/add-user')">Ajouter un Utilisateur</button>
+      }
+    </div>
   </div>
 </div>

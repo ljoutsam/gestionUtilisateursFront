@@ -6,6 +6,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HeaderComponent } from './component/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AudioRecorderComponent } from './component/audio-recorder/audio-recorder.component';
 
 
 @NgModule({

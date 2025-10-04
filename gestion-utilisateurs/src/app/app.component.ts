@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersModule } from './users/users.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { SharedModule } from './shared/shared.module';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,7 @@ import { LoginComponent } from './login/login.component';
     CommonModule, 
     RouterOutlet,
     HomeComponent,
+    SharedModule,
     LoginComponent,
     FormsModule,
     HttpClientModule,
@@ -22,6 +25,17 @@ import { LoginComponent } from './login/login.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'gestion-utilisateurs';
+  isloggedIn = false
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.isloggedIn = this.authService.isLoggedIn();
+  }
+
+
+
+
 }

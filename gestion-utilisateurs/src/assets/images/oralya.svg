@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" role="img" aria-labelledby="title desc">
+  <title id="title">Logo ORALYA – Sécurité et Justice</title>
+  <desc id="desc">Bouclier bleu-blanc-rouge au-dessus du texte ORALYA, Sécurité et Justice. Fond transparent.</desc>
+
+  <!-- ====== Palette (modifiable) ====== -->
+  <defs>
+    <style>
+      :root {
+        --bleu: #143a5b;   /* Navy contour / texte */
+        --bleuFR: #2d557c; /* Bleu drapeau (gauche) */
+        --blancFR: #ffffff;
+        --rougeFR: #cc1f2f;/* Rouge drapeau (droite) */
+      }
+      .navy{fill:var(--bleu);}
+      .blue{fill:var(--bleuFR);}
+      .white{fill:var(--blancFR);}
+      .red{fill:var(--rougeFR);}
+      .stroke-navy{stroke:var(--bleu);stroke-width:24;stroke-linejoin:round;fill:none;}
+      text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;}
+    </style>
+    <!-- Filtre léger pour donner du relief au bouclier (facultatif) -->
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity=".12"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- ====== Symbole (bouclier) ====== -->
+  <g transform="translate(450,210)" filter="url(#soft)">
+    <!-- Forme extérieure du bouclier -->
+    <path class="navy" d="M0,-140
+         C-82,-120 -150,-108 -190,-100
+         c0,140 60,230 190,290
+         c130,-60 190,-150 190,-290
+         c-40,-8 -108,-20 -190,-40
+         Z"></path>
+    <!-- Remplissages tricolores (gauche/centre/droite) -->
+    <clipPath id="clipOuter">
+      <path d="M0,-140 C-82,-120 -150,-108 -190,-100 c0,140 60,230 190,290 c130,-60 190,-150 190,-290 c-40,-8 -108,-20 -190,-40 Z"></path>
+    </clipPath>
+    <g clip-path="url(#clipOuter)">
+      <!-- Bleu -->
+      <rect class="blue" x="-190" y="-160" width="190" height="380"></rect>
+      <!-- Blanc -->
+      <rect class="white" x="-0.5" y="-160" width="190.5" height="380"></rect>
+      <!-- Rouge -->
+      <rect class="red" x="95" y="-160" width="190" height="380"></rect>
+    </g>
+    <!-- Contour du bouclier -->
+    <path class="stroke-navy" d="M0,-140
+         C-82,-120 -150,-108 -190,-100
+         c0,140 60,230 190,290
+         c130,-60 190,-150 190,-290
+         c-40,-8 -108,-20 -190,-40 Z"></path>
+    <!-- Petit bouclier intérieur -->
+    <path class="white" d="M0,-80
+         c-36,10 -66,16 -90,20
+         c0,72 30,118 90,148
+         c60,-30 90,-76 90,-148
+         c-24,-4 -54,-10 -90,-20 Z"></path>
+    <path class="stroke-navy" d="M0,-80
+         c-36,10 -66,16 -90,20
+         c0,72 30,118 90,148
+         c60,-30 90,-76 90,-148
+         c-24,-4 -54,-10 -90,-20 Z"></path>
+  </g>
+
+  <!-- ====== Libellé ====== -->
+  <g transform="translate(450,490)" text-anchor="middle" fill="var(--bleu)">
+    <text x="0" y="0" font-size="96" font-weight="800" letter-spacing="2">ORALYA</text>
+    <text x="0" y="64" font-size="40" font-weight="600" letter-spacing="4">SÉCURITÉ ET JUSTICE</text>
+  </g>
+</svg>

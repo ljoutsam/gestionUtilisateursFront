@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { AudioRecorderComponent } from '../shared/component/audio-recorder/audio-recorder.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, AudioRecorderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

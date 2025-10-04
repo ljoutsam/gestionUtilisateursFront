@@ -1,0 +1,64 @@
+<div class="recorder">
+
+  <!-- État : Transcription en cours -->
+  @if (isTranscribing()) {
+    <div class="transcribing" aria-busy="true">
+      <p>⏳ Transcription en cours…</p>
+    </div>
+  } @else {
+
+    <!-- === Boutons Start / Stop === -->
+    <div class="controls">
+      <!-- Bouton Démarrer -->
+      <button
+        class="btn-start"
+        [disabled]="!canClickStart()"
+        (click)="startRecording()">
+        🎙️ {{ startLabel() }}
+      </button>
+
+      <!-- Bouton Arrêter -->
+      <button
+        class="btn-stop"
+        [disabled]="!canClickStop()"
+        [ngClass]="{ 'recording-active': isRecording() }"
+        (click)="stopRecording()">
+        ⏹️ Arrêter
+      </button>
+    </div>
+
+    <!-- Indicateur pendant enregistrement -->
+    @if (isRecording()) {
+      <p class="recording-indicator">🔴 Enregistrement en cours…</p>
+    }
+
+    <!-- Lecteur quand un audio est prêt -->
+    @if (audioURL()) {
+      <div class="audio-container">
+        <audio [src]="audioURL()" controls></audio>
+      </div>
+    }
+
+    <!-- Bouton envoyer pour transcription -->
+    <button
+      class="btn-transcribe"
+      [disabled]="!canTranscribe()"
+      (click)="sendForTranscription()">
+      📝 Transcrire l'audio
+    </button>
+
+    <!-- Résultat + téléchargement -->
+    @if (transcription()) {
+      <div class="result">
+        <h3>Transcription :</h3>
+
+        <button
+          class="btn-download"
+          [disabled]="!canDownloadPDF()"
+          (click)="downloadPDF()">
+          📥 Télécharger en PDF
+        </button>
+      </div>
+    }
+  }
+</div>
